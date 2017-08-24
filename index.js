@@ -20,7 +20,7 @@ app.on('ready', () => {
   const contextMenu = Menu.buildFromTemplate([
     {label: 'Item1', type: 'radio'},
     {label: 'Item2', type: 'radio'},
-    {label: 'Quit', type: 'radio'},
+    {label: 'Quit', role: 'quit', type: 'radio'},
     {label: 'Click me', click() {console.log('clicked the button')}, type: 'radio'}
   ])
 
