@@ -1,4 +1,4 @@
-const {app, Menu, Tray} = require('electron')
+const {app, Menu, Tray, MenuItem} = require('electron')
 
 // let tray = null
 // app.on('ready', () => {
@@ -17,11 +17,15 @@ const {app, Menu, Tray} = require('electron')
 let appIcon = null
 app.on('ready', () => {
   appIcon = new Tray('./images/tray_icon_purple.png')
+//   tray.on('click',()=>{
+//       tray.setImage('./images/tray_icon_black.png')
+//   })
   const contextMenu = Menu.buildFromTemplate([
     {label: 'Item1', type: 'radio'},
     {label: 'Item2', type: 'radio'},
     {label: 'Quit', role: 'quit', type: 'radio'},
-    {label: 'Click me', click() {console.log('clicked the button')}, type: 'radio'}
+    {label: 'Click me', click() {console.log('clicked the button')}, type: 'radio'},
+    new MenuItem({label: "Colour change!", click(){appIcon.setImage('./images/tray_icon_black.png')}, type: 'radio'})
   ])
 
   // Make a change to the context menu
