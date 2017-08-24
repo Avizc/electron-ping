@@ -1,4 +1,5 @@
 const {app, Menu, Tray, MenuItem} = require('electron')
+const notify = require('electron-main-notification')
 
 // let tray = null
 // app.on('ready', () => {
@@ -16,21 +17,25 @@ const {app, Menu, Tray, MenuItem} = require('electron')
 // // This is for Linux distros that have issues!
 let appIcon = null
 app.on('ready', () => {
-  appIcon = new Tray('./images/tray_icon_purple.png')
-//   tray.on('click',()=>{
-//       tray.setImage('./images/tray_icon_black.png')
-//   })
-  const contextMenu = Menu.buildFromTemplate([
-    {label: 'Item1', type: 'radio'},
-    {label: 'Item2', type: 'radio'},
-    {label: 'Quit', role: 'quit', type: 'radio'},
-    {label: 'Click me', click() {console.log('clicked the button')}, type: 'radio'},
-    new MenuItem({label: "Colour change!", click(){appIcon.setImage('./images/tray_icon_black.png')}, type: 'radio'})
-  ])
+    //setInterval(function(){ alert("Hello"); }, 3000);
+    setInterval(function(){
+        notify('This is a notification!', { body: 'See? Really easy to use!' }, () => {
+            console.log('The notification got clicked on!')
+        })
+    },1000)
+    appIcon = new Tray('./images/tray_icon_purple.png')
+    const contextMenu = Menu.buildFromTemplate([
+        {label: 'Item1', type: 'radio'},
+        {label: 'Item2', type: 'radio'},
+        {label: 'Quit', role: 'quit', type: 'radio'},
+        {label: 'Click me', click() {console.log('clicked the button')}, type: 'radio'},
+        new MenuItem({label: "Colour change!", click(){appIcon.setImage('./images/tray_icon_black.png')}, type: 'radio'})
+    ])
 
-  // Make a change to the context menu
-  contextMenu.items[1].checked = false
+    // Make a change to the context menu
+    contextMenu.items[1].checked = false
 
-  // Call this again for Linux because we modified the context menu
-  appIcon.setContextMenu(contextMenu)
+    // Call this again for Linux because we modified the context menu
+    appIcon.setContextMenu(contextMenu)
 })
+
