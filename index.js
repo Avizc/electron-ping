@@ -17,7 +17,17 @@ const notify = require('electron-main-notification')
 // // This is for Linux distros that have issues!
 let appIcon = null
 app.on('ready', () => {
-    //setInterval(function(){ alert("Hello"); }, 3000);
+    const ping = require('node-ping');
+
+    const hosts = ['192.168.1.1', 'google.com', 'yahoo.com'];
+
+    hosts.forEach(function (host) {
+        ping.promise.probe(host)
+            .then(function (res) {
+                console.log(res);
+            });
+    });
+
     setInterval(function(){
         notify('This is a notification!', { body: 'See? Really easy to use!' }, () => {
             console.log('The notification got clicked on!')
