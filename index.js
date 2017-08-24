@@ -2,7 +2,7 @@ const {app, Menu, Tray} = require('electron')
 
 let tray = null
 app.on('ready', () => {
-  tray = new Tray('/path/to/my/icon')
+  tray = new Tray('./images/tray_icon_purple.png')
   const contextMenu = Menu.buildFromTemplate([
     {label: 'Item1', type: 'radio'},
     {label: 'Item2', type: 'radio'},
@@ -14,7 +14,7 @@ app.on('ready', () => {
 })
 let appIcon = null
 app.on('ready', () => {
-  appIcon = new Tray('/path/to/my/icon')
+  appIcon = new Tray('./images/tray_icon_purple.png')
   const contextMenu = Menu.buildFromTemplate([
     {label: 'Item1', type: 'radio'},
     {label: 'Item2', type: 'radio'}
